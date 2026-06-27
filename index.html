@@ -24,6 +24,8 @@
       --text-dim: #6060a0;
       --text-muted: #30304a;
       --red: #ff4d6d;
+      --orange: #ff8c42;
+      --purple: #a855f7;
       --font-d: 'Bebas Neue', cursive;
       --font-m: 'Space Mono', monospace;
       --font-b: 'Barlow', sans-serif;
@@ -64,92 +66,48 @@
       z-index: 100;
     }
 
-    .logo {
-      font-family: var(--font-d);
-      font-size: 26px;
-      letter-spacing: 5px;
-      color: var(--green);
-      text-shadow: 0 0 18px var(--green-glow);
-    }
-
-    .logo sub {
-      font-family: var(--font-m);
-      font-size: 9px;
-      color: var(--text-dim);
-      letter-spacing: 2px;
-      margin-left: 6px;
-      vertical-align: middle;
-    }
-
-    .top-date {
-      font-family: var(--font-m);
-      font-size: 10px;
-      color: var(--text-dim);
-      letter-spacing: 1px;
-    }
+    .logo { font-family: var(--font-d); font-size: 26px; letter-spacing: 5px; color: var(--green); text-shadow: 0 0 18px var(--green-glow); }
+    .logo sub { font-family: var(--font-m); font-size: 9px; color: var(--text-dim); letter-spacing: 2px; margin-left: 6px; vertical-align: middle; }
+    .top-date { font-family: var(--font-m); font-size: 10px; color: var(--text-dim); letter-spacing: 1px; }
 
     .btn-export {
-      display: flex;
-      align-items: center;
-      gap: 5px;
+      display: flex; align-items: center; gap: 5px;
       padding: 6px 11px;
       background: transparent;
       border: 1px solid var(--border-bright);
       border-radius: 2px;
       color: var(--text-dim);
-      font-family: var(--font-m);
-      font-size: 9px;
-      letter-spacing: 1px;
-      cursor: pointer;
-      transition: all .2s;
+      font-family: var(--font-m); font-size: 9px; letter-spacing: 1px;
+      cursor: pointer; transition: all .2s;
     }
     .btn-export:hover { border-color: var(--green); color: var(--green); }
     .btn-export svg { width: 13px; height: 13px; }
 
-    /* import overlay (shown when fetch fails / opened locally) */
+    /* ── IMPORT SCREEN ── */
     .import-screen {
-      display: none;
-      position: fixed;
-      inset: 0;
-      background: var(--bg);
-      z-index: 400;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      padding: 32px;
-      text-align: center;
-      gap: 16px;
+      display: none; position: fixed; inset: 0;
+      background: var(--bg); z-index: 400;
+      flex-direction: column; align-items: center; justify-content: center;
+      padding: 32px; text-align: center; gap: 16px;
     }
     .import-screen.show { display: flex; }
-    .import-title { font-family: var(--font-d); font-size: 28px; letter-spacing: 3px; color: var(--text); }
+    .import-title { font-family: var(--font-d); font-size: 28px; letter-spacing: 3px; }
     .import-sub { font-family: var(--font-m); font-size: 11px; color: var(--text-dim); letter-spacing: 1px; line-height: 2; max-width: 340px; }
     .btn-import-file {
       display: inline-flex; align-items: center; gap: 8px;
-      padding: 13px 22px;
-      background: var(--green); color: #06060e;
+      padding: 13px 22px; background: var(--green); color: #06060e;
       border: none; border-radius: 3px;
-      font-family: var(--font-d); font-size: 18px; letter-spacing: 2px;
-      cursor: pointer;
+      font-family: var(--font-d); font-size: 18px; letter-spacing: 2px; cursor: pointer;
     }
     .btn-start-fresh {
       font-family: var(--font-m); font-size: 10px; color: var(--text-dim);
-      background: transparent; border: none; cursor: pointer; letter-spacing: 1px;
-      text-decoration: underline;
+      background: transparent; border: none; cursor: pointer; letter-spacing: 1px; text-decoration: underline;
     }
 
-    /* ── MAIN ── */
-    .main {
-      flex: 1;
-      overflow-y: auto;
-      padding-bottom: 80px;
-    }
+    /* ── LAYOUT ── */
+    .main { flex: 1; overflow-y: auto; padding-bottom: 80px; }
 
-    .page {
-      display: none;
-      padding: 20px;
-      animation: fadeIn .18s ease;
-    }
-
+    .page { display: none; padding: 20px; animation: fadeIn .18s ease; }
     .page.active { display: block; }
 
     @keyframes fadeIn {
@@ -159,704 +117,210 @@
 
     /* ── BOTTOM NAV ── */
     .bottom-nav {
-      position: fixed;
-      bottom: 0;
-      left: 0;
-      right: 0;
-      background: rgba(10,10,20,.97);
-      backdrop-filter: blur(20px);
-      border-top: 1px solid var(--border);
-      display: flex;
-      z-index: 100;
+      position: fixed; bottom: 0; left: 0; right: 0;
+      background: rgba(10,10,20,.97); backdrop-filter: blur(20px);
+      border-top: 1px solid var(--border); display: flex; z-index: 100;
     }
 
     .nav-btn {
-      flex: 1;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 3px;
-      padding: 10px 0 14px;
-      border: none;
-      background: transparent;
-      cursor: pointer;
-      color: var(--text-muted);
-      font-family: var(--font-m);
-      font-size: 9px;
-      letter-spacing: 1px;
-      transition: color .2s;
-      position: relative;
+      flex: 1; display: flex; flex-direction: column; align-items: center; gap: 3px;
+      padding: 10px 0 14px; border: none; background: transparent; cursor: pointer;
+      color: var(--text-muted); font-family: var(--font-m); font-size: 9px;
+      letter-spacing: 1px; transition: color .2s; position: relative;
     }
-
     .nav-btn svg { width: 20px; height: 20px; transition: transform .2s; }
-
     .nav-btn.active { color: var(--green); }
-    .nav-btn.active svg {
-      filter: drop-shadow(0 0 5px var(--green-glow));
-      transform: translateY(-2px);
-    }
+    .nav-btn.active svg { filter: drop-shadow(0 0 5px var(--green-glow)); transform: translateY(-2px); }
     .nav-btn.active::before {
-      content: '';
-      position: absolute;
-      top: 0; left: 22%; right: 22%;
-      height: 2px;
-      background: var(--green);
-      box-shadow: 0 0 8px var(--green-glow);
+      content: ''; position: absolute; top: 0; left: 22%; right: 22%;
+      height: 2px; background: var(--green); box-shadow: 0 0 8px var(--green-glow);
     }
 
     /* ── SECTION HEADS ── */
-    .section-head {
-      margin-bottom: 22px;
-    }
-    .section-title {
-      font-family: var(--font-d);
-      font-size: 30px;
-      letter-spacing: 3px;
-      line-height: 1;
-    }
-    .section-sub {
-      font-family: var(--font-m);
-      font-size: 10px;
-      color: var(--text-dim);
-      letter-spacing: 2px;
-      margin-top: 4px;
-    }
+    .section-head { margin-bottom: 22px; }
+    .section-title { font-family: var(--font-d); font-size: 30px; letter-spacing: 3px; line-height: 1; }
+    .section-sub { font-family: var(--font-m); font-size: 10px; color: var(--text-dim); letter-spacing: 2px; margin-top: 4px; }
 
     /* ── CARDS ── */
-    .card {
-      background: var(--card);
-      border: 1px solid var(--border);
-      border-radius: 3px;
-      padding: 16px;
-      margin-bottom: 12px;
-    }
-
-    .card-label {
-      font-family: var(--font-m);
-      font-size: 10px;
-      color: var(--text-dim);
-      letter-spacing: 2px;
-      text-transform: uppercase;
-      margin-bottom: 8px;
-    }
-
-    .card-value {
-      font-family: var(--font-d);
-      font-size: 38px;
-      letter-spacing: 1px;
-      line-height: 1;
-    }
-
+    .card { background: var(--card); border: 1px solid var(--border); border-radius: 3px; padding: 16px; margin-bottom: 12px; }
+    .card-label { font-family: var(--font-m); font-size: 10px; color: var(--text-dim); letter-spacing: 2px; text-transform: uppercase; margin-bottom: 8px; }
+    .card-value { font-family: var(--font-d); font-size: 38px; letter-spacing: 1px; line-height: 1; }
     .card-value.green { color: var(--green); text-shadow: 0 0 12px var(--green-glow); }
     .card-value.blue  { color: var(--blue);  text-shadow: 0 0 12px var(--blue-glow); }
-
-    .card-meta {
-      font-family: var(--font-m);
-      font-size: 10px;
-      color: var(--text-dim);
-      margin-top: 5px;
-    }
-
-    .stats-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 10px;
-      margin-bottom: 20px;
-    }
+    .card-meta { font-family: var(--font-m); font-size: 10px; color: var(--text-dim); margin-top: 5px; }
+    .stats-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 20px; }
 
     /* ── CALENDAR ── */
     .cal-wrap { margin-bottom: 20px; }
-
-    .cal-grid {
-      display: grid;
-      grid-template-columns: repeat(13, 1fr);
-      gap: 3px;
-    }
-
-    .cal-day {
-      aspect-ratio: 1;
-      border-radius: 2px;
-      background: var(--border);
-      cursor: default;
-      transition: transform .1s;
-    }
-
+    .cal-grid { display: grid; grid-template-columns: repeat(13, 1fr); gap: 3px; }
+    .cal-day { aspect-ratio: 1; border-radius: 2px; background: var(--border); cursor: default; transition: transform .1s; }
     .cal-day:hover { transform: scale(1.4); z-index: 5; }
     .cal-day.s  { background: var(--green); opacity: .7; }
     .cal-day.r  { background: var(--blue);  opacity: .7; }
     .cal-day.sr { background: linear-gradient(135deg, var(--green) 50%, var(--blue) 50%); opacity: .8; }
     .cal-day.today { outline: 1.5px solid var(--green); outline-offset: 2px; }
-
-    .legend {
-      display: flex;
-      gap: 14px;
-      margin-top: 10px;
-    }
-
-    .legend-item {
-      display: flex;
-      align-items: center;
-      gap: 6px;
-      font-family: var(--font-m);
-      font-size: 10px;
-      color: var(--text-dim);
-    }
-
-    .legend-dot {
-      width: 9px; height: 9px;
-      border-radius: 2px;
-    }
+    .legend { display: flex; gap: 14px; margin-top: 10px; }
+    .legend-item { display: flex; align-items: center; gap: 6px; font-family: var(--font-m); font-size: 10px; color: var(--text-dim); }
+    .legend-dot { width: 9px; height: 9px; border-radius: 2px; }
 
     /* ── RECENT ── */
-    .workout-row {
-      display: flex;
-      align-items: flex-start;
-      gap: 12px;
-      padding: 13px 0;
-      border-bottom: 1px solid var(--border);
-    }
+    .workout-row { display: flex; align-items: flex-start; gap: 12px; padding: 13px 0; border-bottom: 1px solid var(--border); }
     .workout-row:last-child { border-bottom: none; }
-
-    .w-badge {
-      width: 34px; height: 34px;
-      border-radius: 3px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      flex-shrink: 0;
-      font-size: 15px;
-    }
+    .w-badge { width: 34px; height: 34px; border-radius: 3px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; font-size: 15px; }
     .w-badge.s { background: var(--green-dim); border: 1px solid rgba(180,254,69,.25); }
     .w-badge.r { background: var(--blue-dim);  border: 1px solid rgba(74,158,255,.25); }
-
     .w-info { flex: 1; min-width: 0; }
     .w-date  { font-family: var(--font-m); font-size: 10px; color: var(--text-dim); }
     .w-title { font-weight: 600; font-size: 13px; margin: 2px 0; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
     .w-meta  { font-family: var(--font-m); font-size: 11px; color: var(--text-dim); }
 
+    /* ── RUN TYPE SELECTOR ── */
+    .rtype-group { display: grid; grid-template-columns: repeat(4,1fr); gap: 6px; margin-bottom: 16px; }
+    .rtype-btn {
+      padding: 8px 4px; border: 1px solid var(--border-bright); background: var(--card);
+      border-radius: 2px; color: var(--text-muted); font-family: var(--font-m);
+      font-size: 9px; letter-spacing: .5px; cursor: pointer; text-align: center; transition: all .15s;
+    }
+    .rtype-btn[data-t=easy].active     { border-color: var(--blue);   color: var(--blue);   background: rgba(74,158,255,.1); }
+    .rtype-btn[data-t=interval].active { border-color: var(--orange);  color: var(--orange);  background: rgba(255,140,66,.1); }
+    .rtype-btn[data-t=tempo].active    { border-color: var(--red);     color: var(--red);     background: rgba(255,77,109,.1); }
+    .rtype-btn[data-t=long].active     { border-color: var(--purple);  color: var(--purple);  background: rgba(168,85,247,.1); }
+
+    /* ── RUN TYPE BADGE ── */
+    .rt-badge { font-family: var(--font-m); font-size: 9px; padding: 2px 7px; border-radius: 10px; letter-spacing: .5px; display: inline-block; }
+    .rt-badge[data-t=easy]     { background: rgba(74,158,255,.15);  color: var(--blue); }
+    .rt-badge[data-t=interval] { background: rgba(255,140,66,.15);  color: var(--orange); }
+    .rt-badge[data-t=tempo]    { background: rgba(255,77,109,.15);  color: var(--red); }
+    .rt-badge[data-t=long]     { background: rgba(168,85,247,.15);  color: var(--purple); }
+
     /* ── LOG FORM ── */
-    .type-toggle {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 10px;
-      margin-bottom: 22px;
-    }
-
+    .type-toggle { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 22px; }
     .type-btn {
-      padding: 18px 12px;
-      border: 1px solid var(--border-bright);
-      background: var(--card);
-      border-radius: 3px;
-      cursor: pointer;
-      text-align: center;
-      color: var(--text-dim);
-      font-family: var(--font-d);
-      font-size: 20px;
-      letter-spacing: 2px;
-      transition: all .2s;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 6px;
+      padding: 18px 12px; border: 1px solid var(--border-bright); background: var(--card);
+      border-radius: 3px; cursor: pointer; text-align: center; color: var(--text-dim);
+      font-family: var(--font-d); font-size: 20px; letter-spacing: 2px; transition: all .2s;
+      display: flex; flex-direction: column; align-items: center; gap: 6px;
     }
-
     .type-btn svg { width: 26px; height: 26px; }
-
-    .type-btn.ts {
-      border-color: var(--green);
-      color: var(--green);
-      background: var(--green-dim);
-      box-shadow: 0 0 16px rgba(180,254,69,.08);
-    }
-    .type-btn.tr {
-      border-color: var(--blue);
-      color: var(--blue);
-      background: var(--blue-dim);
-      box-shadow: 0 0 16px rgba(74,158,255,.08);
-    }
+    .type-btn.ts { border-color: var(--green); color: var(--green); background: var(--green-dim); box-shadow: 0 0 16px rgba(180,254,69,.08); }
+    .type-btn.tr { border-color: var(--blue);  color: var(--blue);  background: var(--blue-dim);  box-shadow: 0 0 16px rgba(74,158,255,.08); }
 
     .form-group { margin-bottom: 16px; }
+    label { display: block; font-family: var(--font-m); font-size: 10px; color: var(--text-dim); letter-spacing: 2px; text-transform: uppercase; margin-bottom: 6px; }
 
-    label {
-      display: block;
-      font-family: var(--font-m);
-      font-size: 10px;
-      color: var(--text-dim);
-      letter-spacing: 2px;
-      text-transform: uppercase;
-      margin-bottom: 6px;
+    input[type=text], input[type=date], input[type=number], select, textarea {
+      width: 100%; background: var(--surface); border: 1px solid var(--border-bright);
+      border-radius: 3px; color: var(--text); font-family: var(--font-m); font-size: 14px;
+      padding: 11px 13px; outline: none; transition: border-color .2s, box-shadow .2s; -webkit-appearance: none; appearance: none;
     }
-
-    input[type=text],
-    input[type=date],
-    input[type=number],
-    select,
-    textarea {
-      width: 100%;
-      background: var(--surface);
-      border: 1px solid var(--border-bright);
-      border-radius: 3px;
-      color: var(--text);
-      font-family: var(--font-m);
-      font-size: 14px;
-      padding: 11px 13px;
-      outline: none;
-      transition: border-color .2s, box-shadow .2s;
-      -webkit-appearance: none;
-    }
-
-    input:focus, select:focus, textarea:focus {
-      border-color: var(--green);
-      box-shadow: 0 0 0 1px rgba(180,254,69,.15);
-    }
-
+    input:focus, select:focus, textarea:focus { border-color: var(--green); box-shadow: 0 0 0 1px rgba(180,254,69,.15); }
     textarea { resize: vertical; min-height: 78px; }
-
     input[type=date]::-webkit-calendar-picker-indicator { filter: invert(.3); cursor: pointer; }
 
     .row2 { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
-    .row3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 8px; }
 
     /* ── EXERCISE LIST ── */
-    .ex-card {
-      background: var(--surface);
-      border: 1px solid var(--border);
-      border-radius: 3px;
-      margin-bottom: 10px;
-    }
-
-    .ex-header {
-      padding: 11px 14px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      border-bottom: 1px solid var(--border);
-    }
-
-    .ex-name {
-      font-weight: 600;
-      font-size: 14px;
-      color: var(--green);
-      letter-spacing: .3px;
-    }
-
-    .btn-ex-del {
-      font-family: var(--font-m);
-      font-size: 10px;
-      color: var(--text-dim);
-      background: transparent;
-      border: none;
-      cursor: pointer;
-      letter-spacing: 1px;
-      transition: color .2s;
-    }
+    .ex-card { background: var(--surface); border: 1px solid var(--border); border-radius: 3px; margin-bottom: 10px; }
+    .ex-header { padding: 11px 14px; display: flex; align-items: center; justify-content: space-between; border-bottom: 1px solid var(--border); }
+    .ex-name { font-weight: 600; font-size: 14px; color: var(--green); letter-spacing: .3px; }
+    .btn-ex-del { font-family: var(--font-m); font-size: 10px; color: var(--text-dim); background: transparent; border: none; cursor: pointer; letter-spacing: 1px; transition: color .2s; }
     .btn-ex-del:hover { color: var(--red); }
-
-    .prev-row {
-      padding: 6px 14px;
-      border-bottom: 1px solid var(--border);
-      background: rgba(180,254,69,.025);
-      font-family: var(--font-m);
-      font-size: 10px;
-      color: var(--text-dim);
-      letter-spacing: .5px;
-    }
-
+    .prev-row { padding: 6px 14px; border-bottom: 1px solid var(--border); background: rgba(180,254,69,.025); font-family: var(--font-m); font-size: 10px; color: var(--text-dim); letter-spacing: .5px; }
     .sets-wrap { padding: 10px 14px; }
-
-    .set-row {
-      display: grid;
-      grid-template-columns: 22px 1fr 1fr 24px;
-      gap: 7px;
-      align-items: center;
-      margin-bottom: 7px;
-    }
-
+    .set-row { display: grid; grid-template-columns: 22px 1fr 1fr 24px; gap: 7px; align-items: center; margin-bottom: 7px; }
     .set-num { font-family: var(--font-m); font-size: 10px; color: var(--text-muted); }
-
-    .si {
-      background: var(--card);
-      border: 1px solid var(--border);
-      border-radius: 2px;
-      color: var(--text);
-      font-family: var(--font-m);
-      font-size: 13px;
-      padding: 8px;
-      outline: none;
-      text-align: center;
-      width: 100%;
-      transition: border-color .15s;
-    }
+    .si { background: var(--card); border: 1px solid var(--border); border-radius: 2px; color: var(--text); font-family: var(--font-m); font-size: 13px; padding: 8px; outline: none; text-align: center; width: 100%; transition: border-color .15s; }
     .si:focus { border-color: var(--green); }
     .si::placeholder { color: var(--text-muted); }
-
-    .btn-rm-set {
-      background: transparent;
-      border: none;
-      color: var(--text-muted);
-      cursor: pointer;
-      font-size: 15px;
-      line-height: 1;
-      padding: 2px;
-      transition: color .15s;
-    }
+    .btn-rm-set { background: transparent; border: none; color: var(--text-muted); cursor: pointer; font-size: 15px; line-height: 1; padding: 2px; transition: color .15s; }
     .btn-rm-set:hover { color: var(--red); }
-
-    .btn-add-set {
-      display: flex;
-      align-items: center;
-      gap: 6px;
-      background: transparent;
-      border: 1px dashed var(--border-bright);
-      border-radius: 2px;
-      color: var(--text-dim);
-      font-family: var(--font-m);
-      font-size: 10px;
-      letter-spacing: 1px;
-      padding: 7px 10px;
-      cursor: pointer;
-      width: 100%;
-      transition: all .2s;
-    }
+    .btn-add-set { display: flex; align-items: center; gap: 6px; background: transparent; border: 1px dashed var(--border-bright); border-radius: 2px; color: var(--text-dim); font-family: var(--font-m); font-size: 10px; letter-spacing: 1px; padding: 7px 10px; cursor: pointer; width: 100%; transition: all .2s; }
     .btn-add-set:hover { border-color: var(--green); color: var(--green); }
 
     /* ── BUTTONS ── */
-    .btn-primary {
-      display: block;
-      width: 100%;
-      padding: 15px;
-      background: var(--green);
-      color: #06060e;
-      border: none;
-      border-radius: 3px;
-      font-family: var(--font-d);
-      font-size: 20px;
-      letter-spacing: 3px;
-      cursor: pointer;
-      transition: all .2s;
-      margin-top: 4px;
-    }
-    .btn-primary:hover {
-      background: #c6ff55;
-      box-shadow: 0 4px 18px rgba(180,254,69,.35);
-    }
+    .btn-primary { display: block; width: 100%; padding: 15px; background: var(--green); color: #06060e; border: none; border-radius: 3px; font-family: var(--font-d); font-size: 20px; letter-spacing: 3px; cursor: pointer; transition: all .2s; margin-top: 4px; }
+    .btn-primary:hover { background: #c6ff55; box-shadow: 0 4px 18px rgba(180,254,69,.35); }
+    .btn-primary.blue { background: var(--blue); color: #06060e; }
+    .btn-primary.blue:hover { background: #6aafff; box-shadow: 0 4px 18px rgba(74,158,255,.35); }
 
-    .btn-primary.blue {
-      background: var(--blue);
-      color: #06060e;
-    }
-    .btn-primary.blue:hover {
-      background: #6aafff;
-      box-shadow: 0 4px 18px rgba(74,158,255,.35);
-    }
-
-    .btn-add-ex {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 8px;
-      width: 100%;
-      padding: 13px;
-      background: transparent;
-      border: 1px dashed var(--green);
-      border-radius: 3px;
-      color: var(--green);
-      font-family: var(--font-d);
-      font-size: 17px;
-      letter-spacing: 2px;
-      cursor: pointer;
-      margin-bottom: 18px;
-      transition: all .2s;
-    }
-    .btn-add-ex:hover {
-      background: var(--green-dim);
-      box-shadow: 0 0 16px rgba(180,254,69,.08);
-    }
+    .btn-add-ex { display: flex; align-items: center; justify-content: center; gap: 8px; width: 100%; padding: 13px; background: transparent; border: 1px dashed var(--green); border-radius: 3px; color: var(--green); font-family: var(--font-d); font-size: 17px; letter-spacing: 2px; cursor: pointer; margin-bottom: 18px; transition: all .2s; }
+    .btn-add-ex:hover { background: var(--green-dim); box-shadow: 0 0 16px rgba(180,254,69,.08); }
 
     /* ── PACE BOX ── */
-    .pace-box {
-      background: var(--blue-dim);
-      border: 1px solid rgba(74,158,255,.25);
-      border-radius: 3px;
-      padding: 12px 14px;
-      margin-top: 8px;
-      display: flex;
-      align-items: baseline;
-      gap: 10px;
-    }
-
-    .pace-lbl { font-family: var(--font-m); font-size: 10px; color: var(--text-dim); letter-spacing: 2px; }
-    .pace-val { font-family: var(--font-d); font-size: 30px; color: var(--blue); letter-spacing: 2px; line-height: 1; }
+    .pace-box { background: var(--blue-dim); border: 1px solid rgba(74,158,255,.25); border-radius: 3px; padding: 12px 14px; margin-top: 8px; display: flex; align-items: baseline; gap: 10px; }
+    .pace-lbl  { font-family: var(--font-m); font-size: 10px; color: var(--text-dim); letter-spacing: 2px; }
+    .pace-val  { font-family: var(--font-d); font-size: 30px; color: var(--blue); letter-spacing: 2px; line-height: 1; }
     .pace-unit { font-family: var(--font-m); font-size: 11px; color: var(--text-dim); }
 
-    /* ── MODAL ── */
-    .overlay {
-      position: fixed;
-      inset: 0;
-      background: rgba(7,7,15,.88);
-      backdrop-filter: blur(12px);
-      z-index: 200;
-      display: none;
-      align-items: flex-end;
-    }
+    /* ── MODALS (exercise picker + edit) ── */
+    .overlay { position: fixed; inset: 0; background: rgba(7,7,15,.88); backdrop-filter: blur(12px); z-index: 200; display: none; align-items: flex-end; }
     .overlay.open { display: flex; }
-
-    .modal {
-      background: var(--surface);
-      border: 1px solid var(--border-bright);
-      border-radius: 5px 5px 0 0;
-      padding: 22px 20px;
-      width: 100%;
-      max-height: 65vh;
-      overflow-y: auto;
-      animation: slideUp .25s ease;
-    }
+    .modal { background: var(--surface); border: 1px solid var(--border-bright); border-radius: 5px 5px 0 0; padding: 22px 20px; width: 100%; max-height: 80vh; overflow-y: auto; animation: slideUp .25s ease; }
 
     @keyframes slideUp {
       from { transform: translateY(30px); opacity: 0; }
       to   { transform: translateY(0);    opacity: 1; }
     }
 
-    .modal-title {
-      font-family: var(--font-d);
-      font-size: 22px;
-      letter-spacing: 2px;
-      margin-bottom: 14px;
-    }
-
-    .suggestions {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 7px;
-      margin-top: 12px;
-    }
-
-    .pill {
-      padding: 5px 11px;
-      background: var(--card);
-      border: 1px solid var(--border);
-      border-radius: 20px;
-      font-family: var(--font-m);
-      font-size: 11px;
-      color: var(--text-dim);
-      cursor: pointer;
-      transition: all .15s;
-    }
+    .modal-title { font-family: var(--font-d); font-size: 22px; letter-spacing: 2px; margin-bottom: 14px; }
+    .suggestions { display: flex; flex-wrap: wrap; gap: 7px; margin-top: 12px; }
+    .pill { padding: 5px 11px; background: var(--card); border: 1px solid var(--border); border-radius: 20px; font-family: var(--font-m); font-size: 11px; color: var(--text-dim); cursor: pointer; transition: all .15s; }
     .pill:hover { border-color: var(--green); color: var(--green); background: var(--green-dim); }
-
-    .modal-actions {
-      display: flex;
-      gap: 10px;
-      margin-top: 16px;
-    }
-
-    .btn-sec {
-      padding: 10px 18px;
-      background: transparent;
-      border: 1px solid var(--border-bright);
-      border-radius: 3px;
-      color: var(--text-dim);
-      font-family: var(--font-m);
-      font-size: 11px;
-      letter-spacing: 1px;
-      cursor: pointer;
-      transition: all .2s;
-    }
+    .modal-actions { display: flex; gap: 10px; margin-top: 16px; }
+    .btn-sec { padding: 10px 18px; background: transparent; border: 1px solid var(--border-bright); border-radius: 3px; color: var(--text-dim); font-family: var(--font-m); font-size: 11px; letter-spacing: 1px; cursor: pointer; transition: all .2s; }
     .btn-sec:hover { border-color: var(--green); color: var(--green); }
 
     /* ── HISTORY ── */
-    .filter-bar {
-      display: flex;
-      gap: 7px;
-      margin-bottom: 16px;
-      overflow-x: auto;
-      padding-bottom: 2px;
-      -ms-overflow-style: none;
-      scrollbar-width: none;
-    }
+    .filter-bar { display: flex; gap: 7px; margin-bottom: 16px; overflow-x: auto; padding-bottom: 2px; -ms-overflow-style: none; scrollbar-width: none; }
     .filter-bar::-webkit-scrollbar { display: none; }
-
-    .filter-btn {
-      flex-shrink: 0;
-      padding: 5px 13px;
-      background: var(--card);
-      border: 1px solid var(--border);
-      border-radius: 20px;
-      font-family: var(--font-m);
-      font-size: 10px;
-      letter-spacing: 1px;
-      color: var(--text-dim);
-      cursor: pointer;
-      transition: all .15s;
-    }
+    .filter-btn { flex-shrink: 0; padding: 5px 13px; background: var(--card); border: 1px solid var(--border); border-radius: 20px; font-family: var(--font-m); font-size: 10px; letter-spacing: 1px; color: var(--text-dim); cursor: pointer; transition: all .15s; }
     .filter-btn.active { border-color: var(--green); color: var(--green); background: var(--green-dim); }
 
-    .hist-card {
-      background: var(--card);
-      border: 1px solid var(--border);
-      border-radius: 3px;
-      margin-bottom: 9px;
-      overflow: hidden;
-    }
-
-    .hist-hdr {
-      padding: 13px 15px;
-      display: flex;
-      align-items: center;
-      gap: 11px;
-      cursor: pointer;
-      user-select: none;
-      transition: background .15s;
-    }
+    .hist-card { background: var(--card); border: 1px solid var(--border); border-radius: 3px; margin-bottom: 9px; overflow: hidden; }
+    .hist-hdr { padding: 13px 15px; display: flex; align-items: center; gap: 11px; cursor: pointer; user-select: none; transition: background .15s; }
     .hist-hdr:hover { background: rgba(255,255,255,.02); }
-
-    .hist-dot {
-      width: 7px; height: 7px;
-      border-radius: 50%;
-      flex-shrink: 0;
-    }
+    .hist-dot { width: 7px; height: 7px; border-radius: 50%; flex-shrink: 0; }
     .hist-dot.s { background: var(--green); box-shadow: 0 0 5px var(--green); }
     .hist-dot.r { background: var(--blue);  box-shadow: 0 0 5px var(--blue); }
-
-    .hist-date  { font-family: var(--font-m); font-size: 10px; color: var(--text-dim); white-space: nowrap; }
-    .hist-title { flex: 1; font-weight: 600; font-size: 13px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+    .hist-date    { font-family: var(--font-m); font-size: 10px; color: var(--text-dim); white-space: nowrap; }
+    .hist-title   { flex: 1; font-weight: 600; font-size: 13px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
     .hist-chevron { color: var(--text-muted); font-size: 11px; transition: transform .2s; flex-shrink: 0; }
     .hist-card.open .hist-chevron { transform: rotate(180deg); }
-
-    .hist-body {
-      display: none;
-      padding: 0 15px 14px;
-      border-top: 1px solid var(--border);
-    }
+    .hist-body { display: none; padding: 0 15px 14px; border-top: 1px solid var(--border); }
     .hist-card.open .hist-body { display: block; }
-
     .hist-ex { margin-top: 11px; }
-    .hist-ex-name {
-      font-family: var(--font-m);
-      font-size: 10px;
-      color: var(--green);
-      letter-spacing: 1px;
-      margin-bottom: 6px;
-    }
-
+    .hist-ex-name { font-family: var(--font-m); font-size: 10px; color: var(--green); letter-spacing: 1px; margin-bottom: 6px; }
     .hist-sets { display: flex; flex-wrap: wrap; gap: 5px; }
+    .set-tag { background: var(--surface); border: 1px solid var(--border); border-radius: 2px; padding: 3px 8px; font-family: var(--font-m); font-size: 11px; color: var(--text-dim); }
 
-    .set-tag {
-      background: var(--surface);
-      border: 1px solid var(--border);
-      border-radius: 2px;
-      padding: 3px 8px;
-      font-family: var(--font-m);
-      font-size: 11px;
-      color: var(--text-dim);
-    }
-
-    .run-stats {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 8px;
-      margin-top: 11px;
-    }
-
-    .rs {
-      background: var(--surface);
-      border: 1px solid var(--border);
-      border-radius: 2px;
-      padding: 9px;
-    }
+    .run-stats { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; margin-top: 11px; }
+    .rs { background: var(--surface); border: 1px solid var(--border); border-radius: 2px; padding: 9px; }
     .rs-lbl { font-family: var(--font-m); font-size: 9px; color: var(--text-muted); letter-spacing: 1px; margin-bottom: 3px; }
     .rs-val { font-family: var(--font-d); font-size: 18px; color: var(--blue); }
 
-    .btn-del {
-      margin-top: 12px;
-      display: inline-flex;
-      align-items: center;
-      gap: 5px;
-      padding: 5px 11px;
-      background: transparent;
-      border: 1px solid rgba(255,77,109,.25);
-      border-radius: 2px;
-      color: rgba(255,77,109,.5);
-      font-family: var(--font-m);
-      font-size: 10px;
-      cursor: pointer;
-      transition: all .2s;
-    }
+    .hist-actions { display: flex; gap: 8px; margin-top: 12px; }
+    .btn-edit { display: inline-flex; align-items: center; gap: 5px; padding: 5px 11px; background: transparent; border: 1px solid var(--border-bright); border-radius: 2px; color: var(--text-dim); font-family: var(--font-m); font-size: 10px; cursor: pointer; transition: all .2s; }
+    .btn-edit:hover { border-color: var(--green); color: var(--green); }
+    .btn-del  { display: inline-flex; align-items: center; gap: 5px; padding: 5px 11px; background: transparent; border: 1px solid rgba(255,77,109,.25); border-radius: 2px; color: rgba(255,77,109,.5); font-family: var(--font-m); font-size: 10px; cursor: pointer; transition: all .2s; }
     .btn-del:hover { border-color: var(--red); color: var(--red); background: rgba(255,77,109,.04); }
 
     /* ── PROGRESS ── */
-    .chart-box {
-      background: var(--card);
-      border: 1px solid var(--border);
-      border-radius: 3px;
-      padding: 16px;
-      margin-bottom: 14px;
-    }
-
-    .chart-title {
-      font-family: var(--font-m);
-      font-size: 10px;
-      letter-spacing: 2px;
-      color: var(--text-dim);
-      margin-bottom: 14px;
-    }
-
+    .chart-box { background: var(--card); border: 1px solid var(--border); border-radius: 3px; padding: 16px; margin-bottom: 14px; }
+    .chart-title { font-family: var(--font-m); font-size: 10px; letter-spacing: 2px; color: var(--text-dim); margin-bottom: 14px; }
     .chart-wrap { position: relative; height: 195px; }
-
     .pr-list { display: flex; flex-direction: column; gap: 7px; }
-
-    .pr-row {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      padding: 9px 13px;
-      background: rgba(180,254,69,.04);
-      border: 1px solid rgba(180,254,69,.12);
-      border-radius: 2px;
-    }
-
+    .pr-row { display: flex; align-items: center; justify-content: space-between; padding: 9px 13px; background: rgba(180,254,69,.04); border: 1px solid rgba(180,254,69,.12); border-radius: 2px; }
     .pr-name { font-family: var(--font-m); font-size: 12px; }
     .pr-val  { font-family: var(--font-d); font-size: 20px; color: var(--green); }
     .pr-unit { font-family: var(--font-m); font-size: 10px; color: var(--text-dim); }
 
     /* ── TOAST ── */
-    .toast {
-      position: fixed;
-      bottom: 88px;
-      left: 50%;
-      transform: translateX(-50%) translateY(16px);
-      background: var(--green);
-      color: #06060e;
-      padding: 9px 20px;
-      border-radius: 2px;
-      font-family: var(--font-m);
-      font-size: 11px;
-      letter-spacing: 1px;
-      opacity: 0;
-      transition: all .28s;
-      z-index: 300;
-      white-space: nowrap;
-      pointer-events: none;
-    }
+    .toast { position: fixed; bottom: 88px; left: 50%; transform: translateX(-50%) translateY(16px); background: var(--green); color: #06060e; padding: 9px 20px; border-radius: 2px; font-family: var(--font-m); font-size: 11px; letter-spacing: 1px; opacity: 0; transition: all .28s; z-index: 300; white-space: nowrap; pointer-events: none; }
     .toast.show { opacity: 1; transform: translateX(-50%) translateY(0); }
 
-    /* ── EMPTY STATE ── */
-    .empty {
-      text-align: center;
-      padding: 36px 20px;
-      font-family: var(--font-m);
-      font-size: 11px;
-      color: var(--text-muted);
-      line-height: 2.2;
-    }
-    .empty strong {
-      display: block;
-      font-family: var(--font-d);
-      font-size: 26px;
-      color: var(--text-dim);
-      letter-spacing: 3px;
-      margin-bottom: 6px;
-    }
+    /* ── EMPTY ── */
+    .empty { text-align: center; padding: 36px 20px; font-family: var(--font-m); font-size: 11px; color: var(--text-muted); line-height: 2.2; }
+    .empty strong { display: block; font-family: var(--font-d); font-size: 26px; color: var(--text-dim); letter-spacing: 3px; margin-bottom: 6px; }
 
     @media (min-width: 600px) {
       .page { padding: 28px; max-width: 680px; margin: 0 auto; }
@@ -879,13 +343,9 @@
   </div>
 </header>
 
-<!-- Shown when data.json can't be fetched (e.g. opened as a local file) -->
 <div class="import-screen" id="importScreen">
   <div class="import-title">LOAD YOUR DATA</div>
-  <div class="import-sub">
-    Drop your <code>data.json</code> here to load it,<br>
-    or start fresh with an empty tracker.
-  </div>
+  <div class="import-sub">Select your <code>data.json</code> to load it,<br>or start fresh with an empty tracker.</div>
   <label>
     <input type="file" accept=".json" id="importFileInput" style="display:none" onchange="importJSON(this)">
     <span class="btn-import-file">
@@ -932,9 +392,9 @@
     <div class="type-toggle">
       <button class="type-btn ts" id="btnS" onclick="setType('strength')">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round">
-          <rect x="2"  y="9" width="3" height="6" rx=".5"/>
+          <rect x="2" y="9" width="3" height="6" rx=".5"/>
           <rect x="19" y="9" width="3" height="6" rx=".5"/>
-          <rect x="5"  y="11" width="4" height="2" rx=".5"/>
+          <rect x="5" y="11" width="4" height="2" rx=".5"/>
           <rect x="15" y="11" width="4" height="2" rx=".5"/>
           <line x1="9" y1="12" x2="15" y2="12"/>
         </svg>
@@ -958,7 +418,7 @@
     <!-- Strength form -->
     <div id="formS">
       <div id="exList"></div>
-      <button class="btn-add-ex" onclick="openModal()">
+      <button class="btn-add-ex" onclick="openExPicker('log')">
         <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
           <line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/>
         </svg>
@@ -969,6 +429,15 @@
 
     <!-- Run form -->
     <div id="formR" style="display:none">
+      <div class="form-group">
+        <label>RUN TYPE</label>
+        <div class="rtype-group" id="rtGroup">
+          <button class="rtype-btn active" data-t="easy"     onclick="setRunType('easy',    'rtGroup')">EASY</button>
+          <button class="rtype-btn"         data-t="interval" onclick="setRunType('interval','rtGroup')">INTERVAL</button>
+          <button class="rtype-btn"         data-t="tempo"    onclick="setRunType('tempo',   'rtGroup')">TEMPO</button>
+          <button class="rtype-btn"         data-t="long"     onclick="setRunType('long',    'rtGroup')">LONG RUN</button>
+        </div>
+      </div>
       <div class="row2" style="margin-bottom:16px">
         <div class="form-group" style="margin:0">
           <label>DISTANCE</label>
@@ -984,7 +453,7 @@
       </div>
       <div class="form-group">
         <label>DURATION (MM:SS or HH:MM:SS)</label>
-        <input type="text" id="rDur" placeholder="45:00" oninput="calcPace()">
+        <input type="text" id="rDur" placeholder="45:00" oninput="calcPace()" onblur="normalizeDur('rDur'); calcPace()">
       </div>
       <div id="paceBox" style="display:none" class="pace-box">
         <div>
@@ -1008,9 +477,9 @@
       <div class="section-sub">ALL LOGGED SESSIONS</div>
     </div>
     <div class="filter-bar">
-      <button class="filter-btn active" onclick="setFilter('all', this)">ALL</button>
-      <button class="filter-btn" onclick="setFilter('strength', this)">STRENGTH</button>
-      <button class="filter-btn" onclick="setFilter('run', this)">RUNS</button>
+      <button class="filter-btn active" onclick="setFilter('all',this)">ALL</button>
+      <button class="filter-btn" onclick="setFilter('strength',this)">STRENGTH</button>
+      <button class="filter-btn" onclick="setFilter('run',this)">RUNS</button>
     </div>
     <div id="histList"></div>
   </div>
@@ -1028,13 +497,25 @@
     </div>
 
     <div class="chart-box">
-      <div class="chart-title">EXERCISE WEIGHT PROGRESSION</div>
+      <div class="chart-title">PACE OVER TIME</div>
+      <div class="chart-wrap"><canvas id="cPace"></canvas></div>
+      <div class="legend" style="margin-top:12px">
+        <div class="legend-item"><div class="legend-dot" style="background:var(--blue)"></div>EASY</div>
+        <div class="legend-item"><div class="legend-dot" style="background:var(--orange)"></div>INTERVAL</div>
+        <div class="legend-item"><div class="legend-dot" style="background:var(--red)"></div>TEMPO</div>
+        <div class="legend-item"><div class="legend-dot" style="background:var(--purple)"></div>LONG</div>
+      </div>
+    </div>
+
+    <div class="chart-box">
+      <div class="chart-title">EXERCISE PROGRESSION</div>
       <div class="form-group">
         <select id="exSel" onchange="renderStrengthChart()">
           <option value="">— SELECT EXERCISE —</option>
         </select>
       </div>
-      <div class="chart-wrap"><canvas id="cStr"></canvas></div>
+      <div class="chart-wrap" style="height:230px"><canvas id="cStr"></canvas></div>
+      <div id="exChartLegend" style="display:flex;gap:14px;margin-top:10px"></div>
     </div>
 
     <div class="chart-box">
@@ -1077,8 +558,8 @@
   </button>
 </nav>
 
-<!-- ══ ADD EXERCISE MODAL ══ -->
-<div class="overlay" id="overlay" onclick="overlayClick(event)">
+<!-- ══ EXERCISE PICKER MODAL ══ -->
+<div class="overlay" id="exOverlay" onclick="if(event.target===this) closeExPicker()">
   <div class="modal">
     <div class="modal-title">ADD EXERCISE</div>
     <div class="form-group">
@@ -1088,8 +569,80 @@
     </div>
     <div class="suggestions" id="exPills"></div>
     <div class="modal-actions">
-      <button class="btn-sec" onclick="closeModal()">CANCEL</button>
+      <button class="btn-sec" onclick="closeExPicker()">CANCEL</button>
       <button class="btn-primary" style="flex:1;margin-top:0" onclick="confirmEx()">ADD</button>
+    </div>
+  </div>
+</div>
+
+<!-- ══ EDIT MODAL ══ -->
+<div class="overlay" id="editOverlay" onclick="if(event.target===this) closeEdit()">
+  <div class="modal">
+    <div class="modal-title" id="editTitle">EDIT WORKOUT</div>
+
+    <!-- Edit run -->
+    <div id="editRunForm">
+      <div class="form-group">
+        <label>DATE</label>
+        <input type="date" id="eDate">
+      </div>
+      <div class="form-group">
+        <label>RUN TYPE</label>
+        <div class="rtype-group" id="eRtGroup">
+          <button class="rtype-btn active" data-t="easy"     onclick="setRunType('easy',    'eRtGroup')">EASY</button>
+          <button class="rtype-btn"         data-t="interval" onclick="setRunType('interval','eRtGroup')">INTERVAL</button>
+          <button class="rtype-btn"         data-t="tempo"    onclick="setRunType('tempo',   'eRtGroup')">TEMPO</button>
+          <button class="rtype-btn"         data-t="long"     onclick="setRunType('long',    'eRtGroup')">LONG RUN</button>
+        </div>
+      </div>
+      <div class="row2" style="margin-bottom:16px">
+        <div class="form-group" style="margin:0">
+          <label>DISTANCE</label>
+          <input type="number" id="eDist" step="0.01" oninput="calcEditPace()">
+        </div>
+        <div class="form-group" style="margin:0">
+          <label>UNIT</label>
+          <select id="eUnit" onchange="calcEditPace()">
+            <option value="mi">Miles</option>
+            <option value="km">Kilometers</option>
+          </select>
+        </div>
+      </div>
+      <div class="form-group">
+        <label>DURATION</label>
+        <input type="text" id="eDur" placeholder="45:00" oninput="calcEditPace()" onblur="normalizeDur('eDur'); calcEditPace()">
+      </div>
+      <div id="editPaceBox" style="display:none" class="pace-box">
+        <div>
+          <div class="pace-lbl">PACE</div>
+          <div class="pace-val" id="editPaceVal">—</div>
+        </div>
+        <div class="pace-unit" id="editPaceUnit">/ mi</div>
+      </div>
+      <div class="form-group" style="margin-top:14px">
+        <label>NOTES</label>
+        <textarea id="eNotes" placeholder="Notes..."></textarea>
+      </div>
+    </div>
+
+    <!-- Edit strength -->
+    <div id="editStrForm" style="display:none">
+      <div class="form-group">
+        <label>DATE</label>
+        <input type="date" id="eSDate">
+      </div>
+      <div id="editExList"></div>
+      <button class="btn-add-ex" onclick="openExPicker('edit')">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+          <line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/>
+        </svg>
+        ADD EXERCISE
+      </button>
+    </div>
+
+    <div class="modal-actions">
+      <button class="btn-sec" onclick="closeEdit()">CANCEL</button>
+      <button class="btn-primary" style="flex:1;margin-top:0" onclick="saveEdit()">SAVE CHANGES</button>
     </div>
   </div>
 </div>
@@ -1098,11 +651,7 @@
 
 <script>
 /* ═══════════════════════════════════════════
-   DATA STORE
-   Source of truth is _data (in-memory object).
-   Loaded via fetch('data.json') on init.
-   Exported via the "EXPORT JSON" button —
-   download the file, commit it, push to GitHub.
+   DATA
 ═══════════════════════════════════════════ */
 let _data = {workouts: []};
 
@@ -1111,13 +660,17 @@ const DB = {
     w.id = Date.now().toString(36) + Math.random().toString(36).slice(2,6);
     _data.workouts.unshift(w);
   },
-  del(id) {
-    _data.workouts = _data.workouts.filter(w => w.id !== id);
+  update(id, patch) {
+    const i = _data.workouts.findIndex(w => w.id === id);
+    if (i !== -1) _data.workouts[i] = {..._data.workouts[i], ...patch};
   },
-  all()  { return _data.workouts; },
+  del(id)  { _data.workouts = _data.workouts.filter(w => w.id !== id); },
+  all()    { return _data.workouts; },
+  byId(id) { return _data.workouts.find(w => w.id === id); },
   lastSession(name) {
     const n = name.toLowerCase().trim();
-    for (const w of this.all()) {
+    const sorted = this.all().slice().sort((a,b) => b.date.localeCompare(a.date));
+    for (const w of sorted) {
       if (w.type !== 'strength') continue;
       const ex = w.exercises?.find(e => e.name.toLowerCase().trim() === n);
       if (ex) return {date: w.date, sets: ex.sets};
@@ -1126,40 +679,33 @@ const DB = {
   },
   exerciseNames() {
     const s = new Set();
-    this.all().filter(w => w.type === 'strength')
-              .forEach(w => w.exercises?.forEach(e => s.add(e.name)));
+    this.all().filter(w => w.type === 'strength').forEach(w => w.exercises?.forEach(e => s.add(e.name)));
     return [...s].sort();
   }
 };
 
 /* ═══════════════════════════════════════════
-   JSON IMPORT / EXPORT
+   IMPORT / EXPORT
 ═══════════════════════════════════════════ */
 function exportJSON() {
   const blob = new Blob([JSON.stringify(_data, null, 2)], {type: 'application/json'});
   const a = document.createElement('a');
   a.href = URL.createObjectURL(blob);
   a.download = 'data.json';
-  document.body.appendChild(a);
-  a.click();
-  document.body.removeChild(a);
+  document.body.appendChild(a); a.click(); document.body.removeChild(a);
   URL.revokeObjectURL(a.href);
   toast('data.json downloaded — commit & push to save permanently.');
 }
 
 function importJSON(input) {
-  const file = input.files[0];
-  if (!file) return;
+  const file = input.files[0]; if (!file) return;
   const reader = new FileReader();
   reader.onload = e => {
     try {
       _data = JSON.parse(e.target.result);
       document.getElementById('importScreen').classList.remove('show');
-      renderDash();
-      toast('Data loaded!');
-    } catch {
-      toast('Invalid JSON file');
-    }
+      renderDash(); toast('Data loaded!');
+    } catch { toast('Invalid JSON file'); }
   };
   reader.readAsText(file);
 }
@@ -1173,11 +719,17 @@ function startFresh() {
 /* ═══════════════════════════════════════════
    STATE
 ═══════════════════════════════════════════ */
-let logType = 'strength';
-let exercises = [];       // [{name, sets:[{weight,reps}], prev}]
-let histFilter = 'all';
-let chartRun = null;
-let chartStr = null;
+let logType      = 'strength';
+let exercises    = [];        // log form exercises
+let editExercises = [];       // edit modal exercises
+let editingId    = null;      // id of workout being edited
+let editingType  = null;      // 'run' | 'strength'
+let _exCtx       = 'log';    // exercise picker context
+let histFilter   = 'all';
+let chartRun = null, chartPace = null, chartStr = null;
+
+// run type state per picker group
+const _runTypeState = {rtGroup: 'easy', eRtGroup: 'easy'};
 
 const DEFAULTS = [
   'Squat','Bench Press','Deadlift','Overhead Press','Barbell Row',
@@ -1185,6 +737,13 @@ const DEFAULTS = [
   'Leg Press','Romanian Deadlift','Hip Thrust','Lunges','Incline Bench',
   'Dumbbell Row','Face Pull','Cable Row','Leg Curl','Calf Raise'
 ];
+
+const RT_COLORS = {
+  easy:     '#4a9eff',
+  interval: '#ff8c42',
+  tempo:    '#ff4d6d',
+  long:     '#a855f7',
+};
 
 /* ═══════════════════════════════════════════
    NAVIGATION
@@ -1204,29 +763,57 @@ function go(page) {
 ═══════════════════════════════════════════ */
 function setType(t) {
   logType = t;
-  document.getElementById('btnS').className = 'type-btn' + (t==='strength' ? ' ts' : '');
-  document.getElementById('btnR').className = 'type-btn' + (t==='run'      ? ' tr' : '');
+  document.getElementById('btnS').className = 'type-btn' + (t === 'strength' ? ' ts' : '');
+  document.getElementById('btnR').className = 'type-btn' + (t === 'run'      ? ' tr' : '');
   document.getElementById('formS').style.display = t === 'strength' ? '' : 'none';
   document.getElementById('formR').style.display = t === 'run'      ? '' : 'none';
 }
 
 /* ═══════════════════════════════════════════
-   EXERCISE MODAL
+   RUN TYPE
 ═══════════════════════════════════════════ */
-function openModal() {
-  document.getElementById('overlay').classList.add('open');
+function setRunType(t, groupId) {
+  _runTypeState[groupId] = t;
+  document.querySelectorAll(`#${groupId} .rtype-btn`).forEach(b => {
+    b.classList.toggle('active', b.dataset.t === t);
+  });
+}
+
+function initRunTypeGroup(groupId, value) {
+  const v = value || 'easy';
+  _runTypeState[groupId] = v;
+  document.querySelectorAll(`#${groupId} .rtype-btn`).forEach(b => {
+    b.classList.toggle('active', b.dataset.t === v);
+  });
+}
+
+/* ═══════════════════════════════════════════
+   DURATION NORMALIZATION
+═══════════════════════════════════════════ */
+function normalizeDur(inputId) {
+  const el = document.getElementById(inputId);
+  const val = el.value.trim();
+  if (!val) return;
+  const parts = val.split(':');
+  if (parts.length < 2 || parts.length > 3) return;
+  const nums = parts.map(Number);
+  if (nums.some(isNaN)) return;
+  // pad all segments except the first (hours/minutes) to 2 digits
+  el.value = nums.map((n, i) => i === 0 ? String(n) : String(n).padStart(2, '0')).join(':');
+}
+
+/* ═══════════════════════════════════════════
+   EXERCISE PICKER
+═══════════════════════════════════════════ */
+function openExPicker(ctx) {
+  _exCtx = ctx;
+  document.getElementById('exOverlay').classList.add('open');
   document.getElementById('exInput').value = '';
   renderPills('');
   setTimeout(() => document.getElementById('exInput').focus(), 80);
 }
 
-function closeModal() {
-  document.getElementById('overlay').classList.remove('open');
-}
-
-function overlayClick(e) {
-  if (e.target === document.getElementById('overlay')) closeModal();
-}
+function closeExPicker() { document.getElementById('exOverlay').classList.remove('open'); }
 
 function renderPills(q) {
   const lower = q.toLowerCase();
@@ -1234,123 +821,202 @@ function renderPills(q) {
   const filtered = lower ? names.filter(n => n.toLowerCase().includes(lower)) : names;
   document.getElementById('exPills').innerHTML =
     filtered.slice(0, 14).map(n =>
-      `<div class="pill" onclick="pickEx('${n.replace(/'/g,"\\'")}')">` + n + '</div>'
+      `<div class="pill" onclick="pickEx('${n.replace(/'/g, "\\'")}')">${n}</div>`
     ).join('');
 }
 
 function filterPills() { renderPills(document.getElementById('exInput').value); }
-
-function pickEx(name) { document.getElementById('exInput').value = name; }
+function pickEx(name)  { document.getElementById('exInput').value = name; }
 
 function confirmEx() {
   const name = document.getElementById('exInput').value.trim();
   if (!name) return;
-  const prev = DB.lastSession(name);
-  exercises.push({name, sets:[{weight:'',reps:''}], prev});
-  renderExList();
-  closeModal();
+  if (_exCtx === 'log') {
+    exercises.push({name, sets:[{weight:'',reps:''}], prev: DB.lastSession(name)});
+    renderExList();
+  } else {
+    editExercises.push({name, sets:[{weight:'',reps:''}]});
+    renderEditExList();
+  }
+  closeExPicker();
 }
 
 /* ═══════════════════════════════════════════
-   EXERCISE LIST RENDER
+   EXERCISE LIST (log form)
 ═══════════════════════════════════════════ */
 function renderExList() {
-  document.getElementById('exList').innerHTML = exercises.map((ex, i) => `
-    <div class="ex-card">
-      <div class="ex-header">
-        <span class="ex-name">${ex.name}</span>
-        <button class="btn-ex-del" onclick="rmEx(${i})">REMOVE</button>
-      </div>
-      ${ex.prev ? `
-        <div class="prev-row">
-          LAST (${fmtDate(ex.prev.date)}):
-          ${ex.prev.sets.map(s => `${s.weight}×${s.reps}`).join(' · ')}
-        </div>` : ''}
-      <div class="sets-wrap">
-        ${ex.sets.map((s, j) => `
-          <div class="set-row">
-            <span class="set-num">${j+1}</span>
-            <input class="si" type="number" placeholder="lbs" value="${s.weight}"
-              onchange="updSet(${i},${j},'weight',this.value)">
-            <input class="si" type="number" placeholder="reps" value="${s.reps}"
-              onchange="updSet(${i},${j},'reps',this.value)">
-            <button class="btn-rm-set" onclick="rmSet(${i},${j})">×</button>
-          </div>`).join('')}
-        <button class="btn-add-set" onclick="addSet(${i})">
-          <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
-            <line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/>
-          </svg>
-          ADD SET
-        </button>
-      </div>
-    </div>`).join('');
+  document.getElementById('exList').innerHTML = exercises.map((ex, i) => exCardHTML(ex, i, 'log')).join('');
 }
 
-function rmEx(i) { exercises.splice(i, 1); renderExList(); }
-
-function addSet(i) {
-  const last = exercises[i].sets.at(-1);
-  exercises[i].sets.push({weight: last?.weight||'', reps: last?.reps||''});
-  renderExList();
+function renderEditExList() {
+  document.getElementById('editExList').innerHTML = editExercises.map((ex, i) => exCardHTML(ex, i, 'edit')).join('');
 }
 
-function rmSet(i, j) {
-  if (exercises[i].sets.length > 1) { exercises[i].sets.splice(j, 1); renderExList(); }
+function exCardHTML(ex, i, ctx) {
+  const rmFn  = ctx === 'log' ? `rmEx(${i})`  : `rmEditEx(${i})`;
+  const addFn = ctx === 'log' ? `addSet(${i})` : `addEditSet(${i})`;
+  const rmSetFn = (j) => ctx === 'log' ? `rmSet(${i},${j})` : `rmEditSet(${i},${j})`;
+  const updFn = (j, field) => ctx === 'log'
+    ? `updSet(${i},${j},'${field}',this.value)`
+    : `updEditSet(${i},${j},'${field}',this.value)`;
+
+  return `<div class="ex-card">
+    <div class="ex-header">
+      <span class="ex-name">${ex.name}</span>
+      <button class="btn-ex-del" onclick="${rmFn}">REMOVE</button>
+    </div>
+    ${ex.prev ? `<div class="prev-row">LAST (${fmtDate(ex.prev.date)}): ${ex.prev.sets.map(s=>`${s.weight}×${s.reps}`).join(' · ')}</div>` : ''}
+    <div class="sets-wrap">
+      ${ex.sets.map((s, j) => `
+        <div class="set-row">
+          <span class="set-num">${j+1}</span>
+          <input class="si" type="number" placeholder="lbs" value="${s.weight}" onchange="${updFn(j,'weight')}">
+          <input class="si" type="number" placeholder="reps" value="${s.reps}"  onchange="${updFn(j,'reps')}">
+          <button class="btn-rm-set" onclick="${rmSetFn(j)}">×</button>
+        </div>`).join('')}
+      <button class="btn-add-set" onclick="${addFn}">
+        <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+          <line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/>
+        </svg>ADD SET
+      </button>
+    </div>
+  </div>`;
 }
 
-function updSet(i, j, field, val) {
-  exercises[i].sets[j][field] = val;
-}
+// log form exercise ops
+function rmEx(i)              { exercises.splice(i,1); renderExList(); }
+function addSet(i)            { const l=exercises[i].sets.at(-1); exercises[i].sets.push({weight:l?.weight||'',reps:l?.reps||''}); renderExList(); }
+function rmSet(i,j)           { if(exercises[i].sets.length>1){exercises[i].sets.splice(j,1);renderExList();} }
+function updSet(i,j,field,v)  { exercises[i].sets[j][field]=v; }
+
+// edit modal exercise ops
+function rmEditEx(i)              { editExercises.splice(i,1); renderEditExList(); }
+function addEditSet(i)            { const l=editExercises[i].sets.at(-1); editExercises[i].sets.push({weight:l?.weight||'',reps:l?.reps||''}); renderEditExList(); }
+function rmEditSet(i,j)           { if(editExercises[i].sets.length>1){editExercises[i].sets.splice(j,1);renderEditExList();} }
+function updEditSet(i,j,field,v)  { editExercises[i].sets[j][field]=v; }
 
 /* ═══════════════════════════════════════════
-   SAVE WORKOUTS
+   SAVE (log form)
 ═══════════════════════════════════════════ */
 function saveStrength() {
   const date = document.getElementById('logDate').value;
-  if (!date) { toast('Select a date'); return; }
-  if (!exercises.length) { toast('Add at least one exercise'); return; }
+  if (!date)            { toast('Select a date'); return; }
+  if (!exercises.length){ toast('Add at least one exercise'); return; }
 
   const exs = exercises.map(ex => ({
     name: ex.name,
-    sets: ex.sets
-      .filter(s => s.weight !== '' || s.reps !== '')
-      .map(s => ({weight: +s.weight||0, reps: +s.reps||0}))
-  })).filter(e => e.sets.length);
+    sets: ex.sets.filter(s=>s.weight!==''||s.reps!=='').map(s=>({weight:+s.weight||0,reps:+s.reps||0}))
+  })).filter(e=>e.sets.length);
 
   if (!exs.length) { toast('Enter at least one set'); return; }
 
-  DB.add({type:'strength', date, exercises: exs});
-  exercises = [];
-  renderExList();
+  DB.add({type:'strength', date, exercises:exs});
+  exercises = []; renderExList();
   document.getElementById('logDate').value = today();
-  toast('Workout saved!');
-  go('history');
+  toast('Workout saved!'); go('history');
 }
 
 function saveRun() {
-  const date = document.getElementById('logDate').value;
-  const dist = parseFloat(document.getElementById('rDist').value);
-  const unit = document.getElementById('rUnit').value;
-  const dur  = document.getElementById('rDur').value.trim();
-  const notes= document.getElementById('rNotes').value.trim();
+  const date  = document.getElementById('logDate').value;
+  const dist  = parseFloat(document.getElementById('rDist').value);
+  const unit  = document.getElementById('rUnit').value;
+  const dur   = document.getElementById('rDur').value.trim();
+  const notes = document.getElementById('rNotes').value.trim();
+  const runType = _runTypeState['rtGroup'];
 
-  if (!date)          { toast('Select a date'); return; }
-  if (!dist || isNaN(dist)) { toast('Enter a distance'); return; }
-  if (!dur)           { toast('Enter duration'); return; }
+  if (!date)            { toast('Select a date'); return; }
+  if (!dist||isNaN(dist)){ toast('Enter a distance'); return; }
+  if (!dur)             { toast('Enter duration'); return; }
 
   const secs = parseDur(dur);
-  if (secs === null)  { toast('Use MM:SS or HH:MM:SS format'); return; }
+  if (secs===null) { toast('Use MM:SS or HH:MM:SS format'); return; }
 
   const pace = paceStr(secs, dist);
-  DB.add({type:'run', date, distance:dist, unit, duration:dur, durationSecs:secs, pace, notes});
+  DB.add({type:'run', date, runType, distance:dist, unit, duration:dur, durationSecs:secs, pace, notes});
 
   document.getElementById('rDist').value  = '';
   document.getElementById('rDur').value   = '';
   document.getElementById('rNotes').value = '';
   document.getElementById('paceBox').style.display = 'none';
   document.getElementById('logDate').value = today();
-  toast('Run saved!');
-  go('history');
+  initRunTypeGroup('rtGroup', 'easy');
+  toast('Run saved!'); go('history');
+}
+
+/* ═══════════════════════════════════════════
+   EDIT MODAL
+═══════════════════════════════════════════ */
+function openEdit(id) {
+  const w = DB.byId(id);
+  if (!w) return;
+  editingId = id;
+  editingType = w.type;
+
+  document.getElementById('editRunForm').style.display = w.type === 'run' ? '' : 'none';
+  document.getElementById('editStrForm').style.display = w.type === 'strength' ? '' : 'none';
+
+  if (w.type === 'run') {
+    document.getElementById('eDate').value = w.date;
+    document.getElementById('eDist').value = w.distance;
+    document.getElementById('eUnit').value = w.unit || 'mi';
+    document.getElementById('eDur').value  = w.duration;
+    document.getElementById('eNotes').value= w.notes || '';
+    document.getElementById('editPaceBox').style.display = 'flex';
+    document.getElementById('editPaceVal').textContent  = w.pace || '—';
+    document.getElementById('editPaceUnit').textContent = '/ ' + (w.unit||'mi');
+    initRunTypeGroup('eRtGroup', w.runType || 'easy');
+  } else {
+    document.getElementById('eSDate').value = w.date;
+    editExercises = (w.exercises || []).map(ex => ({
+      name: ex.name,
+      sets: ex.sets.map(s=>({weight:s.weight,reps:s.reps})),
+      prev: DB.lastSession(ex.name)
+    }));
+    renderEditExList();
+  }
+
+  document.getElementById('editOverlay').classList.add('open');
+}
+
+function closeEdit() {
+  document.getElementById('editOverlay').classList.remove('open');
+  editingId = null; editExercises = [];
+}
+
+function saveEdit() {
+  if (!editingId) return;
+
+  if (editingType === 'run') {
+    const date  = document.getElementById('eDate').value;
+    const dist  = parseFloat(document.getElementById('eDist').value);
+    const unit  = document.getElementById('eUnit').value;
+    const dur   = document.getElementById('eDur').value.trim();
+    const notes = document.getElementById('eNotes').value.trim();
+    const runType = _runTypeState['eRtGroup'];
+
+    if (!date)             { toast('Select a date'); return; }
+    if (!dist||isNaN(dist)){ toast('Enter a distance'); return; }
+    if (!dur)              { toast('Enter duration'); return; }
+    const secs = parseDur(dur);
+    if (secs===null)       { toast('Use MM:SS or HH:MM:SS format'); return; }
+
+    DB.update(editingId, {date, runType, distance:dist, unit, duration:dur, durationSecs:secs, pace:paceStr(secs,dist), notes});
+  } else {
+    const date = document.getElementById('eSDate').value;
+    if (!date) { toast('Select a date'); return; }
+    if (!editExercises.length) { toast('Add at least one exercise'); return; }
+
+    const exs = editExercises.map(ex => ({
+      name: ex.name,
+      sets: ex.sets.filter(s=>s.weight!==''||s.reps!=='').map(s=>({weight:+s.weight||0,reps:+s.reps||0}))
+    })).filter(e=>e.sets.length);
+
+    DB.update(editingId, {date, exercises:exs});
+  }
+
+  closeEdit();
+  renderHist();
+  toast('Changes saved!');
 }
 
 /* ═══════════════════════════════════════════
@@ -1358,9 +1024,8 @@ function saveRun() {
 ═══════════════════════════════════════════ */
 function parseDur(s) {
   const p = s.split(':').map(Number);
-  if (p.some(isNaN) || p.length < 2 || p.length > 3) return null;
-  if (p.length === 2) return p[0]*60 + p[1];
-  return p[0]*3600 + p[1]*60 + p[2];
+  if (p.some(isNaN)||p.length<2||p.length>3) return null;
+  return p.length===2 ? p[0]*60+p[1] : p[0]*3600+p[1]*60+p[2];
 }
 
 function paceStr(secs, dist) {
@@ -1369,109 +1034,97 @@ function paceStr(secs, dist) {
   return `${Math.floor(ps/60)}:${String(Math.round(ps%60)).padStart(2,'0')}`;
 }
 
+function _calcPace(distId, durId, boxId, valId, unitId) {
+  const dist = parseFloat(document.getElementById(distId).value);
+  const dur  = document.getElementById(durId).value.trim();
+  const unit = document.getElementById(unitId).value;
+  const box  = document.getElementById(boxId);
+  if (!dist||!dur) { box.style.display='none'; return; }
+  const secs = parseDur(dur);
+  if (!secs)        { box.style.display='none'; return; }
+  box.style.display='flex';
+  document.getElementById(valId).textContent = paceStr(secs, dist);
+  document.getElementById(unitId + 'Label') && (document.getElementById(unitId + 'Label').textContent = '/ ' + unit);
+}
+
 function calcPace() {
   const dist = parseFloat(document.getElementById('rDist').value);
   const dur  = document.getElementById('rDur').value.trim();
   const unit = document.getElementById('rUnit').value;
   const box  = document.getElementById('paceBox');
-  if (!dist || !dur) { box.style.display='none'; return; }
+  if (!dist||!dur) { box.style.display='none'; return; }
   const secs = parseDur(dur);
-  if (!secs)         { box.style.display='none'; return; }
-  box.style.display = 'flex';
+  if (!secs)        { box.style.display='none'; return; }
+  box.style.display='flex';
   document.getElementById('paceVal').textContent  = paceStr(secs, dist);
   document.getElementById('paceUnit').textContent = '/ ' + unit;
+}
+
+function calcEditPace() {
+  const dist = parseFloat(document.getElementById('eDist').value);
+  const dur  = document.getElementById('eDur').value.trim();
+  const unit = document.getElementById('eUnit').value;
+  const box  = document.getElementById('editPaceBox');
+  if (!dist||!dur) { box.style.display='none'; return; }
+  const secs = parseDur(dur);
+  if (!secs)        { box.style.display='none'; return; }
+  box.style.display='flex';
+  document.getElementById('editPaceVal').textContent  = paceStr(secs, dist);
+  document.getElementById('editPaceUnit').textContent = '/ ' + unit;
 }
 
 /* ═══════════════════════════════════════════
    DASHBOARD
 ═══════════════════════════════════════════ */
 function renderDash() {
-  const ws = DB.all();
+  const ws = DB.all().slice().sort((a,b) => b.date.localeCompare(a.date));
   const todayISO = today();
   const weekAgo  = offsetDate(todayISO, -7);
-  const thisWeek = ws.filter(w => w.date >= weekAgo);
-  const runs     = thisWeek.filter(w => w.type === 'run');
-  const weekMi   = runs.reduce((s, r) => s + (r.unit==='km' ? r.distance*0.621371 : r.distance), 0);
+  const weekRuns = ws.filter(w => w.type==='run' && w.date>=weekAgo);
+  const weekMi   = weekRuns.reduce((s,r)=>s+(r.unit==='km'?r.distance*0.621371:r.distance), 0);
   const streak   = calcStreak(ws, todayISO);
 
   document.getElementById('dashStats').innerHTML = `
-    <div class="card">
-      <div class="card-label">STREAK</div>
-      <div class="card-value green">${streak}</div>
-      <div class="card-meta">DAYS IN A ROW</div>
-    </div>
-    <div class="card">
-      <div class="card-label">WEEK MI</div>
-      <div class="card-value blue">${weekMi.toFixed(1)}</div>
-      <div class="card-meta">THIS WEEK</div>
-    </div>
-    <div class="card">
-      <div class="card-label">WORKOUTS</div>
-      <div class="card-value">${ws.length}</div>
-      <div class="card-meta">ALL TIME</div>
-    </div>
-    <div class="card">
-      <div class="card-label">RUNS</div>
-      <div class="card-value">${ws.filter(w=>w.type==='run').length}</div>
-      <div class="card-meta">ALL TIME</div>
-    </div>`;
+    <div class="card"><div class="card-label">STREAK</div><div class="card-value green">${streak}</div><div class="card-meta">DAYS IN A ROW</div></div>
+    <div class="card"><div class="card-label">WEEK MI</div><div class="card-value blue">${weekMi.toFixed(1)}</div><div class="card-meta">THIS WEEK</div></div>
+    <div class="card"><div class="card-label">WORKOUTS</div><div class="card-value">${ws.length}</div><div class="card-meta">ALL TIME</div></div>
+    <div class="card"><div class="card-label">RUNS</div><div class="card-value">${ws.filter(w=>w.type==='run').length}</div><div class="card-meta">ALL TIME</div></div>`;
 
   renderCal(ws, todayISO);
 
-  const recent = ws.slice(0, 6);
-  document.getElementById('dashRecent').innerHTML = recent.length
-    ? recent.map(w => {
-        if (w.type === 'strength') {
-          const names = w.exercises?.map(e=>e.name).join(', ') || 'Strength';
-          const sets  = w.exercises?.reduce((n,e) => n+(e.sets?.length||0), 0)||0;
-          return `<div class="workout-row">
-            <div class="w-badge s">🏋️</div>
-            <div class="w-info">
-              <div class="w-date">${fmtDate(w.date)}</div>
-              <div class="w-title">${names}</div>
-              <div class="w-meta">${w.exercises?.length||0} exercises · ${sets} sets</div>
-            </div></div>`;
+  document.getElementById('dashRecent').innerHTML = ws.slice(0,6).length
+    ? ws.slice(0,6).map(w => {
+        if (w.type==='strength') {
+          const names = w.exercises?.map(e=>e.name).join(', ')||'Strength';
+          const sets  = w.exercises?.reduce((n,e)=>n+(e.sets?.length||0),0)||0;
+          return `<div class="workout-row"><div class="w-badge s">🏋️</div><div class="w-info"><div class="w-date">${fmtDate(w.date)}</div><div class="w-title">${names}</div><div class="w-meta">${w.exercises?.length||0} exercises · ${sets} sets</div></div></div>`;
         } else {
-          return `<div class="workout-row">
-            <div class="w-badge r">🏃</div>
-            <div class="w-info">
-              <div class="w-date">${fmtDate(w.date)}</div>
-              <div class="w-title">${w.distance} ${w.unit} run</div>
-              <div class="w-meta">${w.duration} · ${w.pace}/${w.unit}</div>
-            </div></div>`;
+          const badge = w.runType ? `<span class="rt-badge" data-t="${w.runType}">${w.runType.toUpperCase()}</span> ` : '';
+          return `<div class="workout-row"><div class="w-badge r">🏃</div><div class="w-info"><div class="w-date">${fmtDate(w.date)}</div><div class="w-title">${badge}${w.distance} ${w.unit} run</div><div class="w-meta">${w.duration} · ${w.pace}/${w.unit}</div></div></div>`;
         }
       }).join('')
     : `<div class="empty"><strong>NO DATA</strong>Log your first workout to get started</div>`;
 }
 
 function calcStreak(ws, todayISO) {
-  const days = new Set(ws.map(w => w.date));
-  let streak = 0, d = todayISO;
-  while (days.has(d)) {
-    streak++;
-    d = offsetDate(d, -1);
-  }
+  const days = new Set(ws.map(w=>w.date));
+  let streak=0, d=todayISO;
+  while (days.has(d)) { streak++; d=offsetDate(d,-1); }
   return streak;
 }
 
 function renderCal(ws, todayISO) {
-  const byDay = {};
-  ws.forEach(w => {
-    if (!byDay[w.date]) byDay[w.date] = new Set();
-    byDay[w.date].add(w.type);
-  });
-  const g = document.getElementById('calGrid');
-  g.innerHTML = '';
-  for (let i = 90; i >= 0; i--) {
-    const iso = offsetDate(todayISO, -i);
-    const types = byDay[iso] || new Set();
-    const hs = types.has('strength'), hr = types.has('run');
-    let cls = 'cal-day';
-    if (hs && hr) cls += ' sr';
-    else if (hs)  cls += ' s';
-    else if (hr)  cls += ' r';
-    if (iso === todayISO) cls += ' today';
-    g.innerHTML += `<div class="${cls}" title="${iso}"></div>`;
+  const byDay={};
+  ws.forEach(w=>{if(!byDay[w.date])byDay[w.date]=new Set();byDay[w.date].add(w.type);});
+  const g=document.getElementById('calGrid'); g.innerHTML='';
+  for(let i=90;i>=0;i--){
+    const iso=offsetDate(todayISO,-i);
+    const t=byDay[iso]||new Set();
+    const hs=t.has('strength'),hr=t.has('run');
+    let cls='cal-day';
+    if(hs&&hr)cls+=' sr'; else if(hs)cls+=' s'; else if(hr)cls+=' r';
+    if(iso===todayISO)cls+=' today';
+    g.innerHTML+=`<div class="${cls}" title="${iso}"></div>`;
   }
 }
 
@@ -1479,244 +1132,398 @@ function renderCal(ws, todayISO) {
    HISTORY
 ═══════════════════════════════════════════ */
 function setFilter(f, btn) {
-  histFilter = f;
-  document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+  histFilter=f;
+  document.querySelectorAll('.filter-btn').forEach(b=>b.classList.remove('active'));
   btn.classList.add('active');
   renderHist();
 }
 
 function renderHist() {
-  let ws = DB.all();
-  if (histFilter !== 'all') ws = ws.filter(w => w.type === histFilter);
-  const el = document.getElementById('histList');
+  let ws=DB.all().slice().sort((a,b) => b.date.localeCompare(a.date));
+  if(histFilter!=='all') ws=ws.filter(w=>w.type===histFilter);
+  const el=document.getElementById('histList');
 
-  if (!ws.length) {
-    el.innerHTML = `<div class="empty"><strong>EMPTY</strong>No workouts match this filter</div>`;
-    return;
-  }
+  if(!ws.length){el.innerHTML=`<div class="empty"><strong>EMPTY</strong>No workouts match this filter</div>`;return;}
 
-  el.innerHTML = ws.map(w => {
-    const typeLabel = w.type === 'run'
-      ? `${w.distance} ${w.unit} run`
-      : w.exercises?.map(e=>e.name).join(', ') || 'Strength';
+  el.innerHTML=ws.map(w=>{
+    const typeLabel = w.type==='run'
+      ? `${w.distance} ${w.unit} run${w.runType?' · '+w.runType:''}`
+      : w.exercises?.map(e=>e.name).join(', ')||'Strength';
 
-    const body = w.type === 'run' ? `
+    const body = w.type==='run' ? `
+      ${w.runType ? `<div style="margin-top:11px"><span class="rt-badge" data-t="${w.runType}">${w.runType.toUpperCase()}</span></div>` : ''}
       <div class="run-stats">
         <div class="rs"><div class="rs-lbl">DISTANCE</div><div class="rs-val">${w.distance}<span style="font-size:12px;color:var(--text-dim)"> ${w.unit}</span></div></div>
         <div class="rs"><div class="rs-lbl">TIME</div><div class="rs-val" style="font-size:16px">${w.duration}</div></div>
         <div class="rs"><div class="rs-lbl">PACE</div><div class="rs-val" style="font-size:16px">${w.pace}/${w.unit}</div></div>
       </div>
-      ${w.notes ? `<p style="font-family:var(--font-m);font-size:10px;color:var(--text-dim);margin-top:10px;line-height:1.7">${w.notes}</p>` : ''}
-    ` : (w.exercises||[]).map(ex => `
+      ${w.notes?`<p style="font-family:var(--font-m);font-size:10px;color:var(--text-dim);margin-top:10px;line-height:1.7">${w.notes}</p>`:''}
+    ` : (w.exercises||[]).map(ex=>`
       <div class="hist-ex">
         <div class="hist-ex-name">${ex.name}</div>
-        <div class="hist-sets">${(ex.sets||[]).map(s=>`<span class="set-tag">${s.weight}×${s.reps}</span>`).join('')}</div>
+        <div class="hist-sets">${(ex.sets||[]).map(s=>{
+          const label = s.weight > 0 ? `${s.weight}×${s.reps}` : `BW×${s.reps}`;
+          return `<span class="set-tag">${label}</span>`;
+        }).join('')}</div>
       </div>`).join('');
 
-    return `
-      <div class="hist-card" id="hc-${w.id}">
-        <div class="hist-hdr" onclick="toggleHist('hc-${w.id}')">
-          <div class="hist-dot ${w.type==='run'?'r':'s'}"></div>
-          <div class="hist-date">${fmtDate(w.date)}</div>
-          <div class="hist-title">${typeLabel}</div>
-          <div class="hist-chevron">▼</div>
+    return `<div class="hist-card" id="hc-${w.id}">
+      <div class="hist-hdr" onclick="toggleHist('hc-${w.id}')">
+        <div class="hist-dot ${w.type==='run'?'r':'s'}"></div>
+        <div class="hist-date">${fmtDate(w.date)}</div>
+        <div class="hist-title">${typeLabel}</div>
+        <div class="hist-chevron">▼</div>
+      </div>
+      <div class="hist-body">
+        ${body}
+        <div class="hist-actions">
+          <button class="btn-edit" onclick="openEdit('${w.id}')">✎ EDIT</button>
+          <button class="btn-del"  onclick="delW('${w.id}')">× DELETE</button>
         </div>
-        <div class="hist-body">
-          ${body}
-          <button class="btn-del" onclick="delW('${w.id}')">× DELETE</button>
-        </div>
-      </div>`;
+      </div>
+    </div>`;
   }).join('');
 }
 
 function toggleHist(id) { document.getElementById(id)?.classList.toggle('open'); }
-
-function delW(id) {
-  if (confirm('Delete this workout?')) { DB.del(id); renderHist(); }
-}
+function delW(id) { if(confirm('Delete this workout?')){DB.del(id);renderHist();} }
 
 /* ═══════════════════════════════════════════
    PROGRESS
 ═══════════════════════════════════════════ */
 function renderProgress() {
-  renderRunChart();
+  renderRunVolChart();
+  renderPaceChart();
   populateExSel();
   renderStrengthChart();
   renderPRs();
 }
 
 function weeklyRunVol() {
-  const result = {};
-  DB.all().filter(w => w.type === 'run').forEach(r => {
-    const d = new Date(r.date + 'T00:00:00');
-    const dow = d.getDay();
-    const mon = new Date(d);
-    mon.setDate(d.getDate() - ((dow+6)%7));
-    const k = mon.toISOString().slice(0,10);
-    const mi = r.unit === 'km' ? r.distance * 0.621371 : r.distance;
-    result[k] = (result[k]||0) + mi;
+  const result={};
+  DB.all().filter(w=>w.type==='run').forEach(r=>{
+    const d=new Date(r.date+'T00:00:00');
+    const mon=new Date(d); mon.setDate(d.getDate()-((d.getDay()+6)%7));
+    const k=mon.toISOString().slice(0,10);
+    result[k]=(result[k]||0)+(r.unit==='km'?r.distance*0.621371:r.distance);
   });
   return result;
 }
 
-function renderRunChart() {
-  const weeks = weeklyRunVol();
-  const keys  = Object.keys(weeks).sort().slice(-12);
-  const ctx   = document.getElementById('cRun').getContext('2d');
-  if (chartRun) chartRun.destroy();
+function renderRunVolChart() {
+  const weeks=weeklyRunVol();
+  const keys=Object.keys(weeks).sort().slice(-12);
+  const ctx=document.getElementById('cRun').getContext('2d');
+  if(chartRun)chartRun.destroy();
 
-  if (!keys.length) {
-    ctx.fillStyle = '#3a3a60';
-    ctx.font = '11px Space Mono';
-    ctx.textAlign = 'center';
-    ctx.fillText('No running data yet', ctx.canvas.width/2, 90);
-    return;
+  if(!keys.length){
+    ctx.fillStyle='#3a3a60'; ctx.font='11px Space Mono'; ctx.textAlign='center';
+    ctx.fillText('No running data yet', ctx.canvas.width/2, 90); return;
   }
 
-  chartRun = new Chart(ctx, {
-    type: 'bar',
+  chartRun=new Chart(ctx,{
+    type:'bar',
+    data:{
+      labels:keys.map(k=>{const d=new Date(k+'T00:00:00');return`${d.getMonth()+1}/${d.getDate()}`;}),
+      datasets:[{data:keys.map(k=>parseFloat(weeks[k].toFixed(2))),backgroundColor:'rgba(74,158,255,.35)',borderColor:'#4a9eff',borderWidth:1,borderRadius:2}]
+    },
+    options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false}},
+      scales:{
+        x:{grid:{color:'rgba(26,26,46,.8)'},ticks:{color:'#6060a0',font:{family:'Space Mono',size:9}}},
+        y:{grid:{color:'rgba(26,26,46,.8)'},ticks:{color:'#6060a0',font:{family:'Space Mono',size:9}},title:{display:true,text:'miles',color:'#6060a0',font:{family:'Space Mono',size:9}}}
+      }}
+  });
+}
+
+function renderPaceChart() {
+  const runs = DB.all().filter(w=>w.type==='run').slice().sort((a,b)=>a.date.localeCompare(b.date));
+  const ctx  = document.getElementById('cPace').getContext('2d');
+  if (chartPace) chartPace.destroy();
+
+  if (!runs.length) {
+    ctx.fillStyle='#3a3a60'; ctx.font='11px Space Mono'; ctx.textAlign='center';
+    ctx.fillText('No running data yet', ctx.canvas.width/2, 90); return;
+  }
+
+  const pts = runs.map(r => {
+    const secs = r.durationSecs || parseDur(r.duration);
+    const dist = r.unit === 'km' ? r.distance * 0.621371 : r.distance;
+    const paceSecs = secs && dist ? Math.round(secs / dist) : null;
+    return {date: r.date, paceSecs, runType: r.runType};
+  }).filter(p => p.paceSecs !== null);
+
+  const labels      = pts.map(p=>{const d=new Date(p.date+'T00:00:00');return`${d.getMonth()+1}/${d.getDate()}`;});
+  const data        = pts.map(p=>p.paceSecs);
+  const ptColors    = pts.map(p=>RT_COLORS[p.runType]||'#4a9eff');
+
+  const allPaces    = data.filter(Boolean);
+  const minP        = Math.min(...allPaces) - 15;
+  const maxP        = Math.max(...allPaces) + 30;
+
+  chartPace = new Chart(ctx, {
+    type: 'line',
     data: {
-      labels: keys.map(k => { const d=new Date(k+'T00:00:00'); return `${d.getMonth()+1}/${d.getDate()}`; }),
+      labels,
       datasets: [{
-        data: keys.map(k => parseFloat(weeks[k].toFixed(2))),
-        backgroundColor: 'rgba(74,158,255,.35)',
-        borderColor: '#4a9eff',
+        data,
+        borderColor: 'rgba(74,158,255,.2)',
         borderWidth: 1,
-        borderRadius: 2,
+        pointBackgroundColor: ptColors,
+        pointBorderColor: ptColors,
+        pointRadius: 5,
+        pointHoverRadius: 7,
+        tension: 0,
+        fill: false,
       }]
     },
     options: {
       responsive: true, maintainAspectRatio: false,
-      plugins: {legend:{display:false}},
+      plugins: {
+        legend: {display: false},
+        tooltip: {
+          callbacks: {
+            label: ctx => {
+              const s = ctx.parsed.y;
+              return `${Math.floor(s/60)}:${String(s%60).padStart(2,'0')} /mi`;
+            }
+          }
+        }
+      },
       scales: {
-        x: { grid:{color:'rgba(26,26,46,.8)'}, ticks:{color:'#6060a0', font:{family:'Space Mono',size:9}} },
-        y: { grid:{color:'rgba(26,26,46,.8)'}, ticks:{color:'#6060a0', font:{family:'Space Mono',size:9}},
-             title:{display:true,text:'miles',color:'#6060a0',font:{family:'Space Mono',size:9}} }
+        x: {grid:{color:'rgba(26,26,46,.8)'},ticks:{color:'#6060a0',font:{family:'Space Mono',size:9}}},
+        y: {
+          reverse: true,
+          min: minP, max: maxP,
+          grid:{color:'rgba(26,26,46,.8)'},
+          ticks:{
+            color:'#6060a0',font:{family:'Space Mono',size:9},
+            callback: val => `${Math.floor(val/60)}:${String(val%60).padStart(2,'0')}`
+          },
+          title:{display:true,text:'pace /mi',color:'#6060a0',font:{family:'Space Mono',size:9}}
+        }
       }
     }
   });
 }
 
 function populateExSel() {
-  const sel = document.getElementById('exSel');
-  const cur = sel.value;
-  const names = DB.exerciseNames();
-  sel.innerHTML = '<option value="">— SELECT EXERCISE —</option>' +
-    names.map(n => `<option value="${n}"${n===cur?' selected':''}>${n}</option>`).join('');
+  const sel=document.getElementById('exSel');
+  const cur=sel.value;
+  const names=DB.exerciseNames();
+  sel.innerHTML='<option value="">— SELECT EXERCISE —</option>'+
+    names.map(n=>`<option value="${n}"${n===cur?' selected':''}>${n}</option>`).join('');
 }
 
 function renderStrengthChart() {
   const name = document.getElementById('exSel').value;
   const ctx  = document.getElementById('cStr').getContext('2d');
   if (chartStr) chartStr.destroy();
+  document.getElementById('exChartLegend').innerHTML = '';
   if (!name) return;
 
   const pts = [];
-  DB.all().filter(w=>w.type==='strength').reverse().forEach(w => {
-    const ex = w.exercises?.find(e=>e.name===name);
-    if (ex) {
-      const max = Math.max(...ex.sets.map(s=>s.weight||0));
-      if (max > 0) pts.push({date:w.date, w:max});
-    }
+  DB.all().filter(w => w.type === 'strength').slice().sort((a,b)=>a.date.localeCompare(b.date)).forEach(w => {
+    const ex = w.exercises?.find(e => e.name === name);
+    if (!ex || !ex.sets?.length) return;
+    const maxW = Math.max(...ex.sets.map(s => s.weight || 0));
+    // reps: use the rep count of the top-weight set (first one if tied)
+    const topSet = maxW > 0
+      ? ex.sets.find(s => (s.weight || 0) === maxW)
+      : null;
+    const reps = topSet ? (topSet.reps || 0) : Math.max(...ex.sets.map(s => s.reps || 0));
+    pts.push({date: w.date, weight: maxW, reps});
   });
 
   if (!pts.length) return;
 
-  chartStr = new Chart(ctx, {
-    type: 'line',
-    data: {
-      labels: pts.map(p => { const d=new Date(p.date+'T00:00:00'); return `${d.getMonth()+1}/${d.getDate()}`; }),
-      datasets: [{
-        data: pts.map(p=>p.w),
-        borderColor: '#b4fe45',
-        backgroundColor: 'rgba(180,254,69,.08)',
-        borderWidth: 2,
-        pointBackgroundColor: '#b4fe45',
-        pointRadius: 4,
-        tension: .3,
-        fill: true,
-      }]
-    },
-    options: {
-      responsive: true, maintainAspectRatio: false,
-      plugins: {legend:{display:false}},
-      scales: {
-        x: { grid:{color:'rgba(26,26,46,.8)'}, ticks:{color:'#6060a0', font:{family:'Space Mono',size:9}} },
-        y: { grid:{color:'rgba(26,26,46,.8)'}, ticks:{color:'#6060a0', font:{family:'Space Mono',size:9}},
-             title:{display:true,text:'lbs',color:'#6060a0',font:{family:'Space Mono',size:9}} }
-      }
-    }
+  const isBodyweight = pts.every(p => p.weight === 0);
+  const labels = pts.map(p => {
+    const d = new Date(p.date + 'T00:00:00');
+    return `${d.getMonth()+1}/${d.getDate()}`;
   });
+
+  const AXIS_STYLE = {
+    grid: {color: 'rgba(26,26,46,.8)'},
+    ticks: {font: {family: 'Space Mono', size: 9}, maxTicksLimit: 6, precision: 0},
+  };
+
+  if (isBodyweight) {
+    chartStr = new Chart(ctx, {
+      type: 'line',
+      data: {
+        labels,
+        datasets: [{
+          label: 'Reps',
+          data: pts.map(p => p.reps),
+          borderColor: '#b4fe45',
+          backgroundColor: 'rgba(180,254,69,.08)',
+          borderWidth: 2,
+          pointBackgroundColor: '#b4fe45',
+          pointRadius: 5,
+          pointHoverRadius: 7,
+          tension: .3,
+          fill: true,
+        }]
+      },
+      options: {
+        responsive: true, maintainAspectRatio: false,
+        interaction: {mode: 'index', intersect: false},
+        plugins: {
+          legend: {display: false},
+          tooltip: {callbacks: {label: c => ` ${c.parsed.y} reps`}}
+        },
+        scales: {
+          x: {...AXIS_STYLE, ticks: {...AXIS_STYLE.ticks, color: '#6060a0'}},
+          y: {...AXIS_STYLE, ticks: {...AXIS_STYLE.ticks, color: '#b4fe45'},
+              title: {display: true, text: 'reps', color: '#b4fe45', font: {family: 'Space Mono', size: 9}}}
+        }
+      }
+    });
+
+    document.getElementById('exChartLegend').innerHTML =
+      `<div class="legend-item"><div class="legend-dot" style="background:#b4fe45"></div>REPS (BODYWEIGHT)</div>`;
+
+  } else {
+    chartStr = new Chart(ctx, {
+      type: 'line',
+      data: {
+        labels,
+        datasets: [
+          {
+            label: 'Weight',
+            data: pts.map(p => p.weight),
+            yAxisID: 'yW',
+            borderColor: '#b4fe45',
+            backgroundColor: 'rgba(180,254,69,.06)',
+            borderWidth: 2,
+            pointBackgroundColor: '#b4fe45',
+            pointRadius: 5,
+            pointHoverRadius: 7,
+            tension: .3,
+            fill: false,
+          },
+          {
+            label: 'Reps',
+            data: pts.map(p => p.reps),
+            yAxisID: 'yR',
+            borderColor: '#4a9eff',
+            borderDash: [5, 3],
+            borderWidth: 1.5,
+            pointBackgroundColor: '#4a9eff',
+            pointRadius: 4,
+            pointHoverRadius: 6,
+            tension: .3,
+            fill: false,
+          }
+        ]
+      },
+      options: {
+        responsive: true, maintainAspectRatio: false,
+        interaction: {mode: 'index', intersect: false},
+        plugins: {
+          legend: {display: false},
+          tooltip: {
+            callbacks: {
+              label: c => c.dataset.label === 'Weight'
+                ? ` ${c.parsed.y} lbs`
+                : ` ${c.parsed.y} reps`
+            }
+          }
+        },
+        scales: {
+          x: {...AXIS_STYLE, ticks: {...AXIS_STYLE.ticks, color: '#6060a0'}},
+          yW: {
+            position: 'left',
+            ...AXIS_STYLE,
+            ticks: {...AXIS_STYLE.ticks, color: '#b4fe45'},
+            title: {display: true, text: 'lbs', color: '#b4fe45', font: {family: 'Space Mono', size: 9}}
+          },
+          yR: {
+            position: 'right',
+            grid: {drawOnChartArea: false},
+            ticks: {...AXIS_STYLE.ticks, color: '#4a9eff', stepSize: 1},
+            title: {display: true, text: 'reps', color: '#4a9eff', font: {family: 'Space Mono', size: 9}}
+          }
+        }
+      }
+    });
+
+    document.getElementById('exChartLegend').innerHTML = `
+      <div class="legend-item"><div class="legend-dot" style="background:#b4fe45"></div>WEIGHT (lbs)</div>
+      <div class="legend-item"><div class="legend-dot" style="background:#4a9eff"></div>REPS AT TOP SET</div>`;
+  }
 }
 
 function renderPRs() {
-  const prs = {};
-  DB.all().filter(w=>w.type==='strength').forEach(w => {
-    w.exercises?.forEach(ex => {
-      const m = Math.max(...(ex.sets?.map(s=>s.weight||0)||[0]));
-      if (!prs[ex.name] || m > prs[ex.name]) prs[ex.name] = m;
+  const prs={};
+  DB.all().filter(w=>w.type==='strength').forEach(w=>{
+    w.exercises?.forEach(ex=>{
+      const maxW=Math.max(...(ex.sets?.map(s=>s.weight||0)||[0]));
+      const maxR=Math.max(...(ex.sets?.map(s=>s.reps||0)||[0]));
+      if(!prs[ex.name]) prs[ex.name]={maxW:0,maxR:0};
+      if(maxW>prs[ex.name].maxW) prs[ex.name].maxW=maxW;
+      if(maxR>prs[ex.name].maxR) prs[ex.name].maxR=maxR;
     });
   });
 
-  const entries = Object.entries(prs).filter(([,v])=>v>0).sort((a,b)=>b[1]-a[1]);
-  const el = document.getElementById('prList');
+  const entries=Object.entries(prs).sort((a,b)=>b[1].maxW-a[1].maxW);
+  const el=document.getElementById('prList');
 
-  if (!entries.length) {
-    el.innerHTML = `<div class="empty" style="padding:16px 0"><strong style="font-size:20px">NO DATA</strong>Log strength workouts to see records</div>`;
+  if(!entries.length){
+    el.innerHTML=`<div class="empty" style="padding:16px 0"><strong style="font-size:20px">NO DATA</strong>Log strength workouts to see records</div>`;
     return;
   }
 
-  el.innerHTML = `<div class="pr-list">${entries.map(([name,weight]) => `
-    <div class="pr-row">
-      <span class="pr-name">${name}</span>
-      <span class="pr-val">${weight} <span class="pr-unit">lbs</span></span>
-    </div>`).join('')}</div>`;
+  el.innerHTML=`<div class="pr-list">${entries.map(([name,{maxW,maxR}])=>{
+    const isBodyweight = maxW===0;
+    const val  = isBodyweight ? maxR : maxW;
+    const unit = isBodyweight ? 'reps' : 'lbs';
+    return `<div class="pr-row">
+      <span class="pr-name">${name}${isBodyweight?' <span style="font-size:9px;color:var(--text-muted)">(BW)</span>':''}</span>
+      <span class="pr-val">${val} <span class="pr-unit">${unit}</span></span>
+    </div>`;
+  }).join('')}</div>`;
 }
 
 /* ═══════════════════════════════════════════
    UTILS
 ═══════════════════════════════════════════ */
 function today() {
-  const d = new Date();
+  const d=new Date();
   return `${d.getFullYear()}-${String(d.getMonth()+1).padStart(2,'0')}-${String(d.getDate()).padStart(2,'0')}`;
 }
 
-function offsetDate(iso, days) {
-  const d = new Date(iso + 'T00:00:00');
-  d.setDate(d.getDate() + days);
+function offsetDate(iso,days) {
+  const d=new Date(iso+'T00:00:00'); d.setDate(d.getDate()+days);
   return `${d.getFullYear()}-${String(d.getMonth()+1).padStart(2,'0')}-${String(d.getDate()).padStart(2,'0')}`;
 }
 
 function fmtDate(iso) {
-  if (!iso) return '';
-  const d = new Date(iso + 'T00:00:00');
-  return d.toLocaleDateString('en-US', {month:'short', day:'numeric', year:'numeric'});
+  if(!iso)return'';
+  return new Date(iso+'T00:00:00').toLocaleDateString('en-US',{month:'short',day:'numeric',year:'numeric'});
 }
 
 function toast(msg) {
-  const t = document.getElementById('toast');
-  t.textContent = msg;
-  t.classList.add('show');
-  setTimeout(() => t.classList.remove('show'), 2600);
+  const t=document.getElementById('toast');
+  t.textContent=msg; t.classList.add('show');
+  setTimeout(()=>t.classList.remove('show'),2600);
 }
 
 /* ═══════════════════════════════════════════
-   INIT — fetch data.json, fall back to import
-   screen if running from file:// or no file yet
+   INIT
 ═══════════════════════════════════════════ */
 (async function init() {
   document.getElementById('topDate').textContent =
-    new Date().toLocaleDateString('en-US', {weekday:'short', month:'short', day:'numeric'}).toUpperCase();
+    new Date().toLocaleDateString('en-US',{weekday:'short',month:'short',day:'numeric'}).toUpperCase();
   document.getElementById('logDate').value = today();
   renderPills('');
 
   try {
     const res = await fetch('data.json');
-    if (!res.ok) throw new Error('not found');
+    if (!res.ok) throw new Error();
     _data = await res.json();
     renderDash();
   } catch {
-    // Can't fetch (local file:// or data.json missing) — show import screen
     document.getElementById('importScreen').classList.add('show');
   }
 })();
