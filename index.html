@@ -802,11 +802,25 @@ async function supaDel(id) {
 }
 
 async function loadWorkouts() {
-  const { data, error } = await supa.from('workouts').select('*');
-  if (error) { toast('Failed to load workouts'); return; }
-  _data.workouts = data.map(rowToWorkout);
-  document.getElementById('migBanner').classList.toggle('show', _data.workouts.length === 0);
-  renderDash();
+  try {
+    console.log('loadWorkouts: querying...');
+    const { data, error } = await supa.from('workouts').select('*');
+    console.log('loadWorkouts: got response', {data, error});
+    if (error) {
+      console.error('loadWorkouts error:', error);
+      toast('Load error: ' + error.message);
+      renderDash();
+      return;
+    }
+    console.log('Loaded', data.length, 'workouts from Supabase');
+    _data.workouts = data.map(rowToWorkout);
+    document.getElementById('migBanner').classList.toggle('show', _data.workouts.length === 0);
+    renderDash();
+  } catch (e) {
+    console.error('loadWorkouts threw:', e);
+    toast('Error: ' + e.message);
+    renderDash();
+  }
 }
 
 async function migrateFromFile(input) {
@@ -1675,11 +1689,16 @@ function toast(msg) {
   renderPills('');
 
   supa.auth.onAuthStateChange(async (event, session) => {
-    if (event === 'SIGNED_IN') {
-      currentUser = session.user;
-      document.getElementById('loginScreen').classList.remove('show');
-      showUserArea(session.user.email);
-      await loadWorkouts();
+    console.log('auth event:', event, session?.user?.email);
+    if (event === 'INITIAL_SESSION' || event === 'SIGNED_IN' || event === 'TOKEN_REFRESHED') {
+      if (session) {
+        currentUser = session.user;
+        document.getElementById('loginScreen').classList.remove('show');
+        showUserArea(session.user.email);
+        await loadWorkouts();
+      } else {
+        document.getElementById('loginScreen').classList.add('show');
+      }
     }
     if (event === 'SIGNED_OUT') {
       currentUser = null;
@@ -1689,15 +1708,6 @@ function toast(msg) {
       document.getElementById('loginScreen').classList.add('show');
     }
   });
-
-  const { data: { session } } = await supa.auth.getSession();
-  if (session) {
-    currentUser = session.user;
-    showUserArea(session.user.email);
-    await loadWorkouts();
-  } else {
-    document.getElementById('loginScreen').classList.add('show');
-  }
 })();
 </script>
 </body>
