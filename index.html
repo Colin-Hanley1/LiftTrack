@@ -1688,14 +1688,13 @@ function toast(msg) {
   document.getElementById('logDate').value = today();
   renderPills('');
 
-  supa.auth.onAuthStateChange(async (event, session) => {
-    console.log('auth event:', event, session?.user?.email);
+  supa.auth.onAuthStateChange((event, session) => {
     if (event === 'INITIAL_SESSION' || event === 'SIGNED_IN' || event === 'TOKEN_REFRESHED') {
       if (session) {
         currentUser = session.user;
         document.getElementById('loginScreen').classList.remove('show');
         showUserArea(session.user.email);
-        await loadWorkouts();
+        setTimeout(() => loadWorkouts(), 0);
       } else {
         document.getElementById('loginScreen').classList.add('show');
       }
